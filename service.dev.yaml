@@ -1,0 +1,11 @@
+  apiVersion: serving.knative.dev/v1
+  kind: Service
+  metadata:
+    name: NEAR-KIRANA-STORE-BACKEDND
+  spec:
+    template:
+      spec:
+        containers:
+        - env:
+          - name: FOO
+            value: bar
