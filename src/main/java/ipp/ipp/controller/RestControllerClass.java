@@ -10,6 +10,14 @@ import ipp.ipp.domain.User;
 @RestController
 public class RestControllerClass {
 
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(value = "/helloWorld", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> getMethod() throws Exception {
+        String response="hello world";
+        return ResponseEntity.ok(response);
+
+    }
     @CrossOrigin(origins = "*")
     @GetMapping(value = "/id", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> getDetails() throws Exception {
