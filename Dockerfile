@@ -1,7 +1,6 @@
 # Use a base image for building the JAR file
 FROM openjdk:17-jdk-slim AS build
 
-
 # Set the working directory
 WORKDIR /app
 
