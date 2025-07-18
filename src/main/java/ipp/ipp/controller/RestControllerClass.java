@@ -14,7 +14,7 @@ public class RestControllerClass {
     @CrossOrigin(origins = "*")
     @GetMapping(value = "/helloWorld", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> getMethod() throws Exception {
-        String response="hello world";
+        String response="hello world 2.0";
         return ResponseEntity.ok(response);
 
     }
