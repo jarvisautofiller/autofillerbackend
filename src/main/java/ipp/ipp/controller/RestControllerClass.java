@@ -1,14 +1,35 @@
 package ipp.ipp.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import ipp.ipp.domain.User;
+import ipp.ipp.service.Extractor;
+import ipp.ipp.service.OCRConnector;
 
 @RestController
 public class RestControllerClass {
+
+    private static final Logger logger = LoggerFactory.getLogger(RestControllerClass.class);
+
+    
+
+    /**
+     * This class is a REST controller that handles HTTP requests.
+     * It provides endpoints for testing, user details, and document upload.
+     */
+
+
+    @Autowired
+    OCRConnector ocrConnector;
+
+    @Autowired
+    Extractor extractor;;
 
 
     @CrossOrigin(origins = "*")
@@ -35,7 +56,15 @@ public class RestControllerClass {
     @CrossOrigin(origins = "*")
     @PostMapping(value = "/document", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> uploadDocument(@RequestParam("image") MultipartFile image) throws Exception {
-       return ResponseEntity.ok("12345");
+
+        String imageText = ocrConnector.imageToText(image);
+        logger.info("Extracted text from image: {}", imageText);
+        String number = extractor.extractIdFromString(imageText);
+        logger.info("Extracted number from text: {}", number);
+
+
+    
+       return ResponseEntity.ok(number);
     }
 }
 

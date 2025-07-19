@@ -34,7 +34,7 @@ public class WebConfig {
     @ConditionalOnProperty(name = "cors.enabled", havingValue = "true")
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOrigins(Collections.singletonList("https://jarvis-cwa-614442955083.europe-west1.run.app")); // Allow requests from this origin
+        corsConfiguration.setAllowedOrigins(Collections.singletonList(frontEndUrl)); // Allow requests from this origin
         corsConfiguration.addAllowedMethod("*"); // Allow all HTTP methods
         corsConfiguration.addAllowedHeader("*"); // Allow all headers
         corsConfiguration.setAllowCredentials(true); // Allow credentials

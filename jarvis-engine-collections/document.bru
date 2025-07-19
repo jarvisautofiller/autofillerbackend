@@ -1,0 +1,20 @@
+meta {
+  name: document
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{host}}/document
+  body: multipartForm
+  auth: inherit
+}
+
+headers {
+  content-type: multipart/form-data
+  Content-Type: multipart/form-data
+}
+
+body:multipart-form {
+  image: @file(/Users/chandujinka/Documents/GitHub/jarvis-ocr-service/chandu.jpg)
+}
