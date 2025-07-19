@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "jarvis-engine-collections",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
