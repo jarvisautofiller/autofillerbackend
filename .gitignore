@@ -1,0 +1,37 @@
+# Maven / Gradle build folders
+target/
+build/
+
+# IDE settings
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.classpath
+.project
+.settings/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Environment and secrets
+.env
+application.properties
+application.yml
+
+# Dependency jars
+*.jar
+*.war
+*.class
+
+# STS (Spring Tool Suite)
+.apt_generated
+.factorypath
+.springBeans
+.sts4-cache
