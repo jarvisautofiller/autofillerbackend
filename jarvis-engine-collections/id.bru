@@ -5,16 +5,15 @@ meta {
 }
 
 get {
-  url: {{host}}/id
+  url: {{host}}/id?id=123
   body: multipartForm
   auth: none
 }
 
-headers {
-  content-type: multipart/form-data
+params:query {
+  id: 123
 }
 
-body:multipart-form {
-  : @file()
-  id: 12213
+headers {
+  ~content-type: multipart/form-data
 }
