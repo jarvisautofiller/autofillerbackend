@@ -1,6 +1,7 @@
 # Maven / Gradle build folders
 target/
 build/
+.gradle/
 
 # IDE settings
 .idea/
