@@ -1,4 +1,4 @@
-package ipp.ipp;
+package ipp.ipp.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -34,6 +34,7 @@ public class WebConfig {
     @ConditionalOnProperty(name = "cors.enabled", havingValue = "true")
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
+        System.out.println("CORS configuration: " + frontEndUrl);
         corsConfiguration.setAllowedOrigins(Collections.singletonList(frontEndUrl)); // Allow requests from this origin
         corsConfiguration.addAllowedMethod("*"); // Allow all HTTP methods
         corsConfiguration.addAllowedHeader("*"); // Allow all headers

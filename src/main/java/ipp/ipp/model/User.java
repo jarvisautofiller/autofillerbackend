@@ -1,4 +1,4 @@
-package ipp.ipp.domain;
+package ipp.ipp.model;
 
 public class User {
     private String firstName;
