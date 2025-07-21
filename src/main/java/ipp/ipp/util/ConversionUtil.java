@@ -2,7 +2,11 @@ package ipp.ipp.util;
 
 import java.util.regex.Pattern;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import ipp.ipp.model.User;
 import lombok.experimental.UtilityClass;
+import reactor.core.publisher.Mono;
 @UtilityClass
 public class ConversionUtil {
 
@@ -24,5 +28,16 @@ public class ConversionUtil {
   
         return "No valid Aadhaar number found";
      }
+
+     public User convertToUser(Mono<String> responseMono) {
+        ObjectMapper mapper = new ObjectMapper();
+        String json = responseMono.block(); // Blocking call to get the JSON string
+        try {
+            return mapper.readValue(json, User.class);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to parse JSON", e);
+        }
+    }
+     
     
 }

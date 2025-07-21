@@ -13,9 +13,18 @@ public class WebClientConfig {
 
     @Bean(name = "ocrWebClient")
     public WebClient ocrWebClient() {
-        System.out.println("OCR URL: " + ocrURL);
         return WebClient.builder()
                         .baseUrl(ocrURL)
+                        .build();
+    }
+
+    @Value("${gov.url}")
+    private String govURL;
+
+    @Bean(name = "govWebClient")
+    public WebClient govWebClient() {     
+        return WebClient.builder()
+                        .baseUrl(govURL)
                         .build();
     }
 }

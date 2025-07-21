@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import ipp.ipp.client.GovernmentClient;
 import ipp.ipp.client.ValidatorClient;
 import ipp.ipp.model.User;
+import ipp.ipp.util.ConversionUtil;
+import reactor.core.publisher.Mono;
 
 
 @Service
@@ -23,7 +25,8 @@ public class UserService {
     ValidatorClient validator;
 
     public ResponseEntity<User> getValidatedUserDetails(String id) {
-        User user = governmentService.getUserDetails(id);
+        Mono<String> userString = governmentService.getUserDetails(id,"Aadhar");
+        User user = ConversionUtil.convertToUser(userString);
         logger.info("Retrieved user details for ID: {}", id);
         Boolean isValidUser = false;
         if (user == null) {

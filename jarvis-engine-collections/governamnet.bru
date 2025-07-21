@@ -1,0 +1,25 @@
+meta {
+  name: governamnet
+  type: http
+  seq: 5
+}
+
+post {
+  url: https://jarvis-government-api-service-614442955083.europe-west1.run.app/userDetails
+  body: json
+  auth: none
+}
+
+headers {
+  accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {"idNumber":"A123456789",
+  "idType":"Aadhar"}
+}
+
+body:multipart-form {
+  : 
+}

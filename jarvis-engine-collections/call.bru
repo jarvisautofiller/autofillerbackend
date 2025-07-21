@@ -1,0 +1,20 @@
+meta {
+  name: call
+  type: http
+  seq: 4
+}
+
+post {
+  url: https://call-handler-api-71931178512.asia-south1.run.app/verifyService/initiate-call
+  body: json
+  auth: none
+}
+
+headers {
+  accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {"mobile":"+919866644487"}
+}
