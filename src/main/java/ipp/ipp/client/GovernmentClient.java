@@ -1,24 +1,40 @@
 package ipp.ipp.client;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import ipp.ipp.model.User;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import reactor.core.publisher.Mono;
 
 @Component
 public class GovernmentClient {
 
-    public User getUserDetails(String id) {
+   
+    private final WebClient webClient;
 
-        User user = new User();
-        user.setFirstName("Jarvis");
-        user.setLastName("Doe");
-        user.setPhoneNumber("123-456-7890");
-        user.setAge(30);
-        user.setAddress("123 Main St, Springfield");
-        user.setEmail("jarvis@gmail.com");
-
-        return user;
-        // TODO Auto-generated method stub
-        
+    @Autowired
+    public GovernmentClient(@Qualifier("govWebClient") WebClient webClient) {
+        this.webClient = webClient;
     }
+
+    public Mono<String> getUserDetails(String idNumber, String idType) {
+        String requestBody = String.format("{\"idNumber\":\"%s\",\"idType\":\"%s\"}", idNumber, idType);
+
+        Mono<String> result = webClient.post()
+            .uri("/userDetails")
+            .header("accept", "application/json")
+            .header("content-type", "application/json")
+            .bodyValue(requestBody)
+            .retrieve()
+            .bodyToMono(String.class);
+
+            return result;
+
+        
+
+    
+    }
+
 
 }
