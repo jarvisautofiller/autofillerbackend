@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import ipp.ipp.client.GovernmentClient;
+import ipp.ipp.client.LbgClient;
 import ipp.ipp.client.ValidatorClient;
 import ipp.ipp.model.User;
 import ipp.ipp.util.ConversionUtil;
@@ -24,10 +25,19 @@ public class UserService {
     @Autowired
     ValidatorClient validator;
 
+    @Autowired
+    LbgClient lbgClient;
+
     public ResponseEntity<User> getValidatedUserDetails(String id) {
+        
         Mono<String> userString = governmentService.getUserDetails(id,"Aadhar");
         User user = ConversionUtil.convertToUser(userString);
         logger.info("Retrieved user details for ID: {}", id);
+
+        Mono<String> lbgDetails = lbgClient.getLbgDetails(user.getPhoneNumber());
+        logger.info("Retrieved LBG details for phone number: {}", user.getPhoneNumber());
+        user = ConversionUtil.addUser(user, ConversionUtil.convertToUser(lbgDetails));
+
         Boolean isValidUser = false;
         if (user == null) {
             logger.error("User not found for ID: {}", id);

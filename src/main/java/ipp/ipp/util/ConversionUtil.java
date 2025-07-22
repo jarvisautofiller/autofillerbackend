@@ -7,9 +7,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ipp.ipp.model.User;
 import lombok.experimental.UtilityClass;
 import reactor.core.publisher.Mono;
+
 @UtilityClass
 public class ConversionUtil {
-
 
     public String getIdFromString(String inputText) {
         Pattern aadhaarPattern = Pattern.compile("^\\d{12}$");
@@ -17,19 +17,19 @@ public class ConversionUtil {
         String[] tokens = inputText.split(",");
         String[] var4 = tokens;
         int var5 = tokens.length;
-  
-        for(int var6 = 0; var6 < var5; ++var6) {
-           String token = var4[var6];
-           String digitsOnly = token.replaceAll("\\D", "");
-           if (aadhaarPattern.matcher(digitsOnly).matches()) {
-              return digitsOnly;
-           }
-        }
-  
-        return "No valid Aadhaar number found";
-     }
 
-     public User convertToUser(Mono<String> responseMono) {
+        for (int var6 = 0; var6 < var5; ++var6) {
+            String token = var4[var6];
+            String digitsOnly = token.replaceAll("\\D", "");
+            if (aadhaarPattern.matcher(digitsOnly).matches()) {
+                return digitsOnly;
+            }
+        }
+
+        return "No valid Aadhaar number found";
+    }
+
+    public User convertToUser(Mono<String> responseMono) {
         ObjectMapper mapper = new ObjectMapper();
         String json = responseMono.block(); // Blocking call to get the JSON string
         try {
@@ -38,6 +38,23 @@ public class ConversionUtil {
             throw new RuntimeException("Failed to parse JSON", e);
         }
     }
-     
-    
+
+    public User addUser(User user, User newUser) {
+
+        if(newUser.getProfession() != null) {
+            user.setProfession(newUser.getProfession());
+        }
+        if(newUser.getAccountNumber() != null) {
+            user.setAccountNumber(newUser.getAccountNumber());
+        }
+        if(newUser.getIfscCode() != null) {
+            user.setIfscCode(newUser.getIfscCode());
+        }
+        if(newUser.getIncome() != null) {
+            user.setIncome(newUser.getIncome());
+        }
+        return user;
+
+    }
+
 }
