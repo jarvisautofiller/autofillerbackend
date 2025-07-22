@@ -1,0 +1,20 @@
+meta {
+  name: lbgapicall
+  type: http
+  seq: 6
+}
+
+post {
+  url: https://jarvis-lbg-data-service-614442955083.europe-west1.run.app/lbgUserDetails
+  body: json
+  auth: none
+}
+
+headers {
+  accept: application/json
+  Content-Type: application/json
+}
+
+body:json {
+  {"phoneNumber":"9876543210"}
+}

@@ -34,6 +34,6 @@ public class Extractor {
       String number = ConversionUtil.getIdFromString(imageText);
       logger.info("Extracted number from text: {}", number);
       // TODO Auto-generated method stub
-      return imageText;
+      return number;
    }
 }

@@ -27,6 +27,16 @@ public class WebClientConfig {
                         .baseUrl(govURL)
                         .build();
     }
+
+    @Value("${lbg.url}")
+    private String lbgURL;
+
+    @Bean(name = "lbgWebClient")
+    public WebClient lbgClient() {     
+        return WebClient.builder()
+                        .baseUrl(lbgURL)
+                        .build();
+    }
 }
 
 
