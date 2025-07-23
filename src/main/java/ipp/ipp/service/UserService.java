@@ -32,10 +32,10 @@ public class UserService {
         
         Mono<String> userString = governmentService.getUserDetails(id,"Aadhar");
         User user = ConversionUtil.convertToUser(userString);
-        logger.info("Retrieved user details for ID: {}", id);
+        logger.info("Retrieved user details for ID: {}", user);
 
         Mono<String> lbgDetails = lbgClient.getLbgDetails(user.getPhoneNumber());
-        logger.info("Retrieved LBG details for phone number: {}", user.getPhoneNumber());
+        logger.info("Retrieved LBG details for phone number: {}", lbgDetails);
         user = ConversionUtil.addUser(user, ConversionUtil.convertToUser(lbgDetails));
 
         Boolean isValidUser = false;
