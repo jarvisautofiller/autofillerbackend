@@ -32,6 +32,7 @@ public class Extractor {
       String imageText = ocrConnector.imageToText(image);
       logger.info("Extracted text from image: {}", imageText);
       String number = ConversionUtil.getIdFromString(imageText);
+   
       logger.info("Extracted number from text: {}", number);
       // TODO Auto-generated method stub
       return number;

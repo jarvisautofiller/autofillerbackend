@@ -42,7 +42,6 @@ public class RestControllerClass {
 
         return userService.getValidatedUserDetails(id);
 
-
         
 
     }
@@ -52,6 +51,9 @@ public class RestControllerClass {
     public ResponseEntity<String> uploadDocument(@RequestParam("image") MultipartFile image) throws Exception {
 
         String number = extractor.imageToText(image);
+        if(number == null || number.isEmpty()) {
+            return ResponseEntity.badRequest().body("No valid ID found in the document.");
+        }
 
         return ResponseEntity.ok(number);
     }

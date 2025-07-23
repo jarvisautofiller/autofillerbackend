@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "608af4c8-c350-4abb-b98b-7d58df4c73ae",
+		"name": "Jarvis Engine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14926301",
+		"_collection_link": "https://bold-moon-910571.postman.co/workspace/CFSB~e827523f-6eec-452d-af22-f85d98307eac/collection/14926301-608af4c8-c350-4abb-b98b-7d58df4c73ae?action=share&source=collection_link&creator=14926301"
+	},
+	"item": [
+		{
+			"name": "Id Endpoint",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/id?id=A123456789",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"id"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "A123456789"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Document Endpoint",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "*",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/Users/chandujinka/Documents/GitHub/jarvis-ocr-service/chandu.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/document",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"document"
+					]
+				},
+				"description": "Generated from cURL: curl --request POST \\\n  --url https://jarvis-engine-614442955083.europe-west1.run.app/document \\\n  --header 'content-type: multipart/form-data' \\\n  --form image=@/Users/chandujinka/Documents/GitHub/jarvis-ocr-service/chandu.jpg"
+			},
+			"response": []
+		}
+	]
+}
