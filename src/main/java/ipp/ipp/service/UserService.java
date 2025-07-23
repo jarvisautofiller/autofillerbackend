@@ -44,7 +44,7 @@ public class UserService {
             return ResponseEntity.notFound().build();
         }
         if (user.getPhoneNumber() != null) {
-            isValidUser = validator.validatePhoneNumber(user.getPhoneNumber());
+            isValidUser = validator.validatePhoneNumber("+91" + user.getPhoneNumber());
         }
 
         if (isValidUser) {

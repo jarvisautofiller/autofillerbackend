@@ -37,6 +37,16 @@ public class WebClientConfig {
                         .baseUrl(lbgURL)
                         .build();
     }
+
+    @Value("${validateservice.url}")
+    private String validateServiceUrl;
+
+    @Bean(name = "vserviceWebClient")
+    public WebClient validateServiceCleint() {     
+        return WebClient.builder()
+                        .baseUrl(validateServiceUrl)
+                        .build();
+    }
 }
 
 

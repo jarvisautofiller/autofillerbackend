@@ -31,7 +31,6 @@ public class GovernmentClient {
                 .onStatus(HttpStatusCode::is4xxClientError, response -> {
                     if (response.statusCode().equals(HttpStatus.NOT_FOUND)) {
                         return response.createException();
- // ← generic
                     }
                     return Mono.error(new RuntimeException("User not found")); // ← this returns WebClientResponseException
                 })
