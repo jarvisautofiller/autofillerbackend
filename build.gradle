@@ -60,5 +60,30 @@ dependencyManagement {
 tasks.named('test') {
     useJUnitPlatform()
 }
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.8.10" // Use latest stable version
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+
+    reports {
+        html.required = true
+        xml.required = true
+        csv.required = false
+    }
+
+    afterEvaluate {
+        classDirectories.setFrom files(classDirectories.files.collect {
+            fileTree(dir: it, include: [
+                'com/autofiller/service/**',
+                'com/autofiller/controller/**',
+                'com/autofiller/util/**'
+            ])
+        })
+    }
+}
 
 

@@ -1,0 +1,9 @@
+{
+  "aadhaar": {
+    "regexPattern1": "^[A-Z][a-zA-Z ]+$",
+    "regexPattern2": ".*DOB[:]?\\s?\\d{2}/\\d{2}/\\d{4}.*",
+    "regexPattern3": "\\d{4}\\s\\d{4}\\s\\d{4}",
+    "regexPattern4": "\\d{12}",
+    "contains1": "government of india"
+  }
+}
